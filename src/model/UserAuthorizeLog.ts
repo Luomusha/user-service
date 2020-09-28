@@ -1,4 +1,4 @@
-import {AUTH_COMMAND, CLIENT, OPERATING_SYSTEM, PLATFORM} from "../type";
+import {AUTH_COMMAND, CLIENT, OPERATING_SYSTEM, PLATFORM} from '../type';
 
 export interface UserAuthorizeLog {
     id: number;
@@ -8,6 +8,6 @@ export interface UserAuthorizeLog {
     client: CLIENT;
     ip: string;
     os: OPERATING_SYSTEM;
-    create_time: string;
+    createTime: string;
 
 }
