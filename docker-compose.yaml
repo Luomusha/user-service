@@ -21,7 +21,7 @@ services:
       - db
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules // if not set, npm install will not work!
+      - /usr/src/app/node_modules
 
 networks:
   user-service-network:

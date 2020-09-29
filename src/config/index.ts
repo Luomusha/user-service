@@ -5,6 +5,7 @@ dotenv.config();
 export const MYSQL_USERNAME = process.env.MYSQL_USERNAME;
 export const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 export const MYSQL_DATABASE = process.env.MYSQL_DATABASE || 'user-server';
+export const USER_SERVICE_PORT = process.env.USER_SERVICE_PORT || 8080;
 export const APP_KEY = process.env.APP_KEY || 'user-server';
 
 if (!MYSQL_DATABASE) {

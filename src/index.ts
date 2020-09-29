@@ -1,14 +1,15 @@
 import app from './app';
 import sequelize from './db';
+import {USER_SERVICE_PORT} from "./config";
 
 
 sequelize.authenticate()
     .then(() => {
-      console.log('server listen 7001');
+      console.log('server listen at', USER_SERVICE_PORT);
       return sequelize.sync({force: false});
     })
     .then(() => {
       console.log('db connected...');
-      app.listen(8080);
+      app.listen(USER_SERVICE_PORT);
     });
 
