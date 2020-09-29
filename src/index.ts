@@ -5,7 +5,7 @@ import sequelize from './db';
 sequelize.authenticate()
     .then(() => {
       console.log('server listen 7001');
-      return sequelize.sync({force: true});
+      return sequelize.sync({force: false});
     })
     .then(() => {
       console.log('db connected...');

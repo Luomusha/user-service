@@ -3,26 +3,26 @@ import sequelize from '../db';
 import {PLATFORM} from '../type';
 
 export interface UserAuth {
-    id: number;
-    uid: number;
-    identityType: PLATFORM;
-    identifier: string;
-    certificate: string;
-    createTime: string;
-    updateTime: string;
+  id: number;
+  uid: number;
+  identityType: PLATFORM;
+  identifier: string;
+  certificate: string;
+  createTime: string;
+  updateTime: string;
 }
 
 /**
  * 用户授权信息表
  */
 class UserAuthSchema extends Model implements UserAuth {
-    id!: number;
-    uid!: number;
-    identityType!: PLATFORM;
-    identifier!: string;
-    certificate!: string;
-    createTime: string;
-    updateTime: string;
+  id!: number;
+  uid!: number;
+  identityType!: PLATFORM;
+  identifier!: string;
+  certificate!: string;
+  createTime: string;
+  updateTime: string;
 }
 
 UserAuthSchema.init({

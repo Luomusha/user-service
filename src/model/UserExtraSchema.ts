@@ -1,7 +1,6 @@
-
 export interface UserExtra {
-    uid: number;
+  uid: number;
 
-    createTime: string;
-    updateTime: string;
+  createTime: string;
+  updateTime: string;
 }
