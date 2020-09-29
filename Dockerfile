@@ -1,14 +1,14 @@
-FROM node
+FROM node:12
 
 WORKDIR /app
 
-COPY package.json package-lock.json tsconfig.json ./
+COPY package.json tsconfig.json ./
 
-RUN npm install
+RUN npm install --registry https://registry.npm.taobao.org/
 
 COPY . .
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE ${USER_SERVICE_PORT}
 
 CMD ["npm","run","start"]

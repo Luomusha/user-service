@@ -3,7 +3,7 @@ import {MYSQL_DATABASE, MYSQL_PASSWORD, MYSQL_USERNAME} from '../config';
 
 const sequelize = new Sequelize({
   dialect: 'mysql',
-  host: '127.0.0.1',
+  host: 'db',
   port: 3306,
   database: MYSQL_DATABASE,
   username: MYSQL_USERNAME,
@@ -11,7 +11,7 @@ const sequelize = new Sequelize({
   define: {
     freezeTableName: true,
   },
-  logging: false,
+  logging: console.log,
 });
 
 export default sequelize;

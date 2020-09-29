@@ -2,28 +2,25 @@ version: "3.8"
 services:
   db:
     image: "mysql"
-    container_name: user-service-db
+    container_name: db
     networks:
-      - user-service-network
+      - nt
     ports:
-    - "3306:3306"
+      - "3306:3306"
+      - "33060:33060"
     environment:
-      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: "user-service"
-
   web:
-    container_name: user-service-web
+    container_name: web
     build: .
-    command: npm start
+    ports:
+      - "8080:8080"
     networks:
-      - user-service-network
-    links:
-      - db
+      - nt
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
 networks:
-  user-service-network:
-    name: user-service-network
-
+  nt:
