@@ -113,8 +113,8 @@ UserBaseSchema.init({
   userRole: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: "normal"
-  }
+    defaultValue: 'normal',
+  },
 }, {
   sequelize: sequelize,
   underscored: true,

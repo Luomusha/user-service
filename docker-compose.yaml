@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  db:
+    image: "mysql"
+    container_name: user-service-db
+    networks:
+      - user-service-network
+    ports:
+    - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: "user-service"
+
+  web:
+    container_name: user-service-web
+    build: .
+    command: npm start
+    networks:
+      - user-service-network
+    links:
+      - db
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules // if not set, npm install will not work!
+
+networks:
+  user-service-network:
+    name: user-service-network
+

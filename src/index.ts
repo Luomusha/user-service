@@ -9,6 +9,6 @@ sequelize.authenticate()
     })
     .then(() => {
       console.log('db connected...');
-      app.listen(7001);
+      app.listen(8080);
     });
 
