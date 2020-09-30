@@ -27,6 +27,6 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     env_file: ./.env
-    restart: always
+    restart: unless-stopped
 networks:
   default:

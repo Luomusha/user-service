@@ -9,8 +9,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putUser = exports.beforePutUser = exports.postUser = exports.beforePostUser = void 0;
+exports.putUser = exports.beforePutUser = exports.postUser = exports.beforePostUser = exports.getUser = exports.beforeGetUser = void 0;
 const UserBaseSchema_1 = require("../model/UserBaseSchema");
+exports.beforeGetUser = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username } = ctx.params;
+    if (!username) {
+        ctx.status = 400;
+        ctx.body = {
+            message: 'username in path is required',
+        };
+    }
+    else {
+        yield next();
+    }
+});
+exports.getUser = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username } = ctx.params;
+    const user = yield UserBaseSchema_1.UserBaseSchema.findOne({
+        where: {
+            username: username,
+        },
+    });
+    ctx.status = 200;
+    ctx.body = user;
+    yield next();
+});
 exports.beforePostUser = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = ctx.request.body;
     if (!username) {

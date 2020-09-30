@@ -9,11 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUsers = void 0;
+exports.getUsers = exports.beforeGetUsers = void 0;
 const UserBaseSchema_1 = require("../model/UserBaseSchema");
+exports.beforeGetUsers = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+});
 exports.getUsers = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
-    ctx.body = 'ok';
     const users = yield UserBaseSchema_1.UserBaseSchema.findAll({});
     console.log(users);
+    ctx.body = users;
     yield next();
 });
