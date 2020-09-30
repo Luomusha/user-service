@@ -10,6 +10,8 @@ services:
       - "33060:33060"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
       MYSQL_DATABASE: "user-service"
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "--password", "123456"]
@@ -28,6 +30,6 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     restart: on-failure
-
+    env_file: ./.env
 networks:
   default:
