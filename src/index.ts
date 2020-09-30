@@ -8,5 +8,7 @@ sequelize.authenticate().then(() => {
 }).then(() => {
   console.log('server listen at', USER_SERVICE_PORT);
   app.listen(USER_SERVICE_PORT);
+}).catch(() => {
+  process.exit(1);
 });
 

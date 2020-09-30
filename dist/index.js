@@ -9,4 +9,6 @@ db_1.default.authenticate().then(() => {
 }).then(() => {
     console.log('server listen at', config_1.USER_SERVICE_PORT);
     app_1.default.listen(config_1.USER_SERVICE_PORT);
+}).catch(() => {
+    process.exit(1);
 });
