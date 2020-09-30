@@ -14,7 +14,7 @@ insert_final_newline = true
 charset = utf-8
 
 # 4 space indentation
-[**.ts]
+[*.ts]
 indent_style = space
 indent_size = 2
 
@@ -28,6 +28,6 @@ indent_style = space
 indent_size = 2
 
 # Matches the exact files either package.json or .travis.yml
-[{package.json, .travis.yml}]
+[package.json]
 indent_style = space
 indent_size = 2
