@@ -1,14 +1,12 @@
-import app from "./app";
-import sequelize from "./db";
+import app from './app';
+import sequelize from './db';
+import {USER_SERVICE_PORT} from './config';
 
-
-sequelize.authenticate()
-    .then(() => {
-        console.log("server listen 7001");
-        return sequelize.sync({force: true});
-    })
-    .then(() => {
-        console.log("db connected...");
-        app.listen(7001)
-    });
+sequelize.authenticate().then(() => {
+  console.log('db connected...');
+  return sequelize.sync({force: true});
+}).then(() => {
+  console.log('server listen at', USER_SERVICE_PORT);
+  app.listen(USER_SERVICE_PORT);
+});
 

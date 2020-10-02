@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Koa = require("koa");
+const config_1 = require("./config");
+const logger = require("koa-logger");
+const koaBody = require("koa-body");
+const router_1 = require("./router");
+const app = new Koa();
+app.keys = [config_1.APP_KEY];
+app.use(logger());
+app.use(koaBody());
+app.use(router_1.default.routes());
+exports.default = app;

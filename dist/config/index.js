@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.APP_KEY = exports.USER_SERVICE_PORT = exports.MYSQL_HOST = exports.MYSQL_PORT = exports.MYSQL_DATABASE = exports.MYSQL_PASSWORD = exports.MYSQL_USERNAME = void 0;
+const dotenv = require("dotenv");
+dotenv.config();
+exports.MYSQL_USERNAME = process.env.MYSQL_USERNAME;
+exports.MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
+exports.MYSQL_DATABASE = process.env.MYSQL_DATABASE;
+exports.MYSQL_PORT = Number(process.env.MYSQL_PORT);
+exports.MYSQL_HOST = process.env.MYSQL_HOST;
+exports.USER_SERVICE_PORT = Number(process.env.USER_SERVICE_PORT);
+exports.APP_KEY = process.env.APP_KEY || 'user-server';
