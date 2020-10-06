@@ -6,12 +6,12 @@ on:
     branches: [ master ]
 
 env:
-  - MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
-  - MYSQL_USERNAME: ${{secrets.MYSQL_USERNAME}}
-  - MYSQL_PASSWORD: ${{secrets.MYSQL_PASSWORD}}
-  - MYSQL_HOST: ${{secrets.MYSQL_HOST}}
-  - MYSQL_PORT: ${{secrets.MYSQL_PORT}}
-  - USER_SERVICE_PORT: ${{secrets.USER_SERVICE_PORT}}
+  MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
+  MYSQL_USERNAME: ${{secrets.MYSQL_USERNAME}}
+  MYSQL_PASSWORD: ${{secrets.MYSQL_PASSWORD}}
+  MYSQL_HOST: ${{secrets.MYSQL_HOST}}
+  MYSQL_PORT: ${{secrets.MYSQL_PORT}}
+  USER_SERVICE_PORT: ${{secrets.USER_SERVICE_PORT}}
 jobs:
   build:
     runs-on: [ self-hosted, linux ]
