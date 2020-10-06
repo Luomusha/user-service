@@ -10,22 +10,30 @@ services:
       - "33060:33060"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_USER: ${MYSQL_USERNAME}
-      MYSQL_DATABASE: "user-service"
+      MYSQL_PORT: ${MYSQL_PORT}
 
   node:
     container_name: node
     build: .
     ports:
-      - "8080:8080"
+      - target: ${USER_SERVICE_PORT}
+        published: ${USER_SERVICE_PORT}
+        protocol: tcp
     depends_on:
       - db
+    restart: unless-stopped
     networks:
       - default
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USERNAME}
+      MYSQL_PORT: ${MYSQL_PORT}
+      USER_SERVICE_PORT: ${USER_SERVICE_PORT}
+
 networks:
   default:
