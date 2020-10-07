@@ -6,7 +6,9 @@ services:
     networks:
       - default
     ports:
-      - "3306:3306"
+      - target: 3306
+        published: ${MYSQL_PORT}
+        protocol: tcp
       - "33060:33060"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
@@ -19,7 +21,9 @@ services:
     container_name: node
     build: .
     ports:
-      - "8080:8080"
+      - target: ${MYSQL_PORT}
+        published: ${MYSQL_PORT}
+        protocol: tcp
     depends_on:
       - db
     restart: unless-stopped
