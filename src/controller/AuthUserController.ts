@@ -1,5 +1,7 @@
 import {Context, Next} from 'koa';
 import {UserBase, UserBaseSchema} from '../model/UserBaseSchema';
+import {UserAuth, UserAuthSchema} from "../model/UserAuthSchema";
+import {UserLocation, UserLocationSchema} from "../model/UserLocationSchema";
 
 export const beforePostUser = async (ctx: Context, next: Next) => {
   const {username, password} = ctx.request.body;
@@ -19,9 +21,25 @@ export const beforePostUser = async (ctx: Context, next: Next) => {
 };
 
 export const postUser = async (ctx: Context, next: Next) => {
+  const {username, password} = ctx.request.body;
+  const ip = ctx.request.ip
+  const ips = ctx.request.ips
+  console.log("request ip", ip, ips);
   const user: UserBase = await UserBaseSchema.create({
-    username: 'lossa',
+    username: username,
+    source: 'username',
   });
+
+  const auth: UserAuth = await UserAuthSchema.create({
+    uid: user.uid,
+    identityType: 'username',
+    identifier: username,
+    certificate: password
+  });
+
+  const location: UserLocation = await UserLocationSchema.create({
+
+  })
   ctx.status = 201;
   ctx.message = 'created';
   ctx.body = user;

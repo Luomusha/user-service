@@ -6,6 +6,7 @@ import router from './router';
 
 const app = new Koa();
 app.keys = [APP_KEY];
+app.proxy = true;
 app.use(logger());
 app.use(koaBody());
 app.use(router.routes());

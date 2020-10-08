@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.putUser = exports.beforePutUser = exports.postUser = exports.beforePostUser = void 0;
 const UserBaseSchema_1 = require("../model/UserBaseSchema");
+const UserAuthSchema_1 = require("../model/UserAuthSchema");
+const UserLocationSchema_1 = require("../model/UserLocationSchema");
 exports.beforePostUser = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = ctx.request.body;
     if (!username) {
@@ -30,9 +32,21 @@ exports.beforePostUser = (ctx, next) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.postUser = (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, password } = ctx.request.body;
+    const ip = ctx.request.ip;
+    const ips = ctx.request.ips;
+    console.log("request ip", ip, ips);
     const user = yield UserBaseSchema_1.UserBaseSchema.create({
-        username: 'lossa',
+        username: username,
+        source: 'username',
     });
+    const auth = yield UserAuthSchema_1.UserAuthSchema.create({
+        uid: user.uid,
+        identityType: 'username',
+        identifier: username,
+        certificate: password
+    });
+    const location = yield UserLocationSchema_1.UserLocationSchema.create({});
     ctx.status = 201;
     ctx.message = 'created';
     ctx.body = user;

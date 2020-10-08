@@ -44,7 +44,12 @@ UserAuthSchema.init({
   identityType: {
     type: DataTypes.STRING,
     allowNull: false,
-    comment: '密码凭证(站内的保存密码，站外的不保存或保存token)',
+    comment: '1手机号 2邮箱 3用户名 4qq 5微信 6腾讯微博 7新浪微博',
+  },
+  identifier: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: '手机号 邮箱 用户名或第三方应用的唯一标识',
   },
 }, {
   tableName: 'user-auth',
