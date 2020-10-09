@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
-import {beforeGetUsers, getUsers} from '../controller/UsersController';
+import {getUsers} from '../controller/UsersController';
 
 const userRouter = new Router();
-userRouter.get('/', beforeGetUsers, getUsers);
+userRouter.get('/', getUsers);
 export default userRouter;

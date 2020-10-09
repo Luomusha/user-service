@@ -7,6 +7,7 @@ const koaBody = require("koa-body");
 const router_1 = require("./router");
 const app = new Koa();
 app.keys = [config_1.APP_KEY];
+app.proxy = true;
 app.use(logger());
 app.use(koaBody());
 app.use(router_1.default.routes());

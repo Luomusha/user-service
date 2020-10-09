@@ -1,29 +1,7 @@
 import {Context, Next} from 'koa';
 import {UserBase, UserBaseSchema} from '../model/UserBaseSchema';
-
-export const beforeGetUser = async (ctx: Context, next: Next) => {
-  const {username} = ctx.params;
-  if (!username) {
-    ctx.status = 400;
-    ctx.body = {
-      message: 'username in path is required',
-    };
-  } else {
-    await next();
-  }
-};
-
-export const getUser = async (ctx: Context, next: Next) => {
-  const {username} = ctx.params;
-  const user = await UserBaseSchema.findOne({
-    where: {
-      username: username,
-    },
-  });
-  ctx.status = 200;
-  ctx.body = user;
-  await next();
-};
+import {UserAuth, UserAuthSchema} from "../model/UserAuthSchema";
+import {UserLocation, UserLocationSchema} from "../model/UserLocationSchema";
 
 export const beforePostUser = async (ctx: Context, next: Next) => {
   const {username, password} = ctx.request.body;
@@ -43,9 +21,25 @@ export const beforePostUser = async (ctx: Context, next: Next) => {
 };
 
 export const postUser = async (ctx: Context, next: Next) => {
+  const {username, password} = ctx.request.body;
+  const ip = ctx.request.ip
+  const ips = ctx.request.ips
+  console.log("request ip", ip, ips);
   const user: UserBase = await UserBaseSchema.create({
-    username: 'lossa',
+    username: username,
+    source: 'username',
   });
+
+  const auth: UserAuth = await UserAuthSchema.create({
+    uid: user.uid,
+    identityType: 'username',
+    identifier: username,
+    certificate: password
+  });
+
+  const location: UserLocation = await UserLocationSchema.create({
+
+  })
   ctx.status = 201;
   ctx.message = 'created';
   ctx.body = user;
