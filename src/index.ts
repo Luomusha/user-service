@@ -1,12 +1,20 @@
 import app from './app';
-import sequelize from './db';
-import {USER_SERVICE_PORT} from './config';
+import {mongoose, sequelize} from './db';
+import {MONGO_URI, USER_SERVICE_PORT} from './config';
 
 sequelize.authenticate().then(() => {
-  console.log('db connected...');
+  console.log('mysql connected...');
   return sequelize.sync({force: true});
 }).then(() => {
-  console.log('server listen at', USER_SERVICE_PORT);
-  app.listen(USER_SERVICE_PORT);
+  console.log('mysql sync...');
 });
+
+mongoose.connect(MONGO_URI).then(() => {
+  console.log('mongo connected...')
+}).catch((e) => {
+  console.log(e)
+})
+
+app.listen(USER_SERVICE_PORT);
+console.log('server listen at', USER_SERVICE_PORT);
 

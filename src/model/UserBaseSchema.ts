@@ -1,24 +1,7 @@
 import {DataTypes, Model} from 'sequelize';
-import sequelize from '../db';
+import {sequelize} from '../db';
 import {GENDER, PLATFORM, USER_ROLE} from '../type';
 
-export interface UserBase {
-  uid: number;
-  userRole: USER_ROLE;
-  registerSource: PLATFORM;
-  username: string;
-  nickname: string;
-  gender: GENDER;
-  birthday: string;
-  signature: string;
-  mobile: string;
-  mobileBindTime: string;
-  email: string;
-  emailBindTime: string;
-  face: string;
-  createTime: string;
-  updateTime: string;
-}
 
 /**
  * 用户基础信息表
