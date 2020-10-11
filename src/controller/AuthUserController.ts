@@ -2,19 +2,17 @@ import {Context, Next} from 'koa';
 import {UserBase, UserBaseSchema} from '../model/UserBaseSchema';
 import {UserAuth, UserAuthSchema} from "../model/UserAuthSchema";
 import {UserLocation, UserLocationSchema} from "../model/UserLocationSchema";
+import {locationFromIp, LocationInfo} from "../service/IPService";
 
 export const beforePostUser = async (ctx: Context, next: Next) => {
   const {username, password} = ctx.request.body;
+
   if (!username) {
     ctx.status = 400;
-    ctx.body = {
-      message: 'username is required.',
-    };
+    ctx.body = 'username is required.';
   } else if (!password) {
     ctx.status = 400;
-    ctx.body = {
-      message: 'password is required.',
-    };
+    ctx.body = 'password is required.';
   } else {
     await next();
   }
@@ -24,7 +22,8 @@ export const postUser = async (ctx: Context, next: Next) => {
   const {username, password} = ctx.request.body;
   const ip = ctx.request.ip
   const ips = ctx.request.ips
-  console.log("request ip", ip, ips);
+  const locationInfo: LocationInfo = await locationFromIp(ip);
+
   const user: UserBase = await UserBaseSchema.create({
     username: username,
     source: 'username',
@@ -38,7 +37,13 @@ export const postUser = async (ctx: Context, next: Next) => {
   });
 
   const location: UserLocation = await UserLocationSchema.create({
-
+    uid: user.uid,
+    currentNation: locationInfo.country,
+    currentProvince: locationInfo.regionName,
+    currentCity: locationInfo.city,
+    currentDistrict: locationInfo.district,
+    latitude: locationInfo.lat,
+    longitude: locationInfo.lon,
   })
   ctx.status = 201;
   ctx.message = 'created';

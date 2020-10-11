@@ -21,8 +21,8 @@ class UserLocationSchema extends Model implements UserLocation{
   currentNation: string;
   currentProvince: string;
   latitude: number;
-  location: string;
   longitude: number;
+  location: string;
   createTime: string;
   updateTime: string;
 
@@ -35,6 +35,42 @@ UserLocationSchema.init({
     primaryKey: true,
     field: 'id',
   },
+  uid: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+  },
+  location: {
+    type: DataTypes.STRING,
+    comment: "具体地址"
+  },
+  latitude: {
+    type: DataTypes.STRING,
+    comment: "纬度"
+  },
+  longitude: {
+    type: DataTypes.STRING,
+    comment: "经度"
+  },
+  currentDistrict: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: "所在地地区"
+  },
+  currentCity: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: "所在地城市"
+  },
+  currentProvince: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: "所在地省份"
+  },
+  currentNation: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: "所在地国家"
+  }
 },{
   tableName: 'user-location',
   sequelize: sequelize,
