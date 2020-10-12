@@ -1,18 +1,26 @@
 import {Schema} from 'mongoose'
+import {mongoose} from "../../db";
+import {CodeSchema} from "../code/CodeSchema";
 
 /**
- * client	Object	The return value.
- * client.id	String	A unique string identifying the client.
- * [client.redirectUris]	Array<String>	Redirect URIs allowed for the client. Required for the authorization_code grant.
- * client.grants	Array<String>	Grant types allowed for the client.
- * [client.accessTokenLifetime]	Number	Client-specific lifetime of generated access tokens in seconds.
- * [client.refreshTokenLifetime]	Number	Client-specific lifetime of generated refresh tokens in seconds.
+ * token    Object    The token(s) to be saved.
+ * token.accessToken    String    The access token to be saved.
+ * token.accessTokenExpiresAt    Date    The expiry time of the access token.
+ * [token.refreshToken]    String    The refresh token to be saved.
+ * [token.refreshTokenExpiresAt]    Date    The expiry time of the refresh token.
+ * [token.scope]
+ * token.client    Object    The client associated with the access token.
+ * token.client.id    String    A unique string identifying the client.
+ * token.user    Object    The user associated with the access token.
  */
 export const TokenSchema = new Schema({
-  id:Schema.Types.ObjectId,
-  clientSecret: String,
-  redirectUris: [String],
-  grants: [String],
-  accessTokenLifetime: Number,
-  refreshTokenLifetime: Number,
+  accessToken: String,
+  accessTokenExpiresAt: Date,
+  refreshToken: String,
+  refreshTokenExpiresAt: Date,
+  scope: String,
+  client: {type: Schema.Types.ObjectId, ref: 'Client'},
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
 });
+
+export const TokenModel = mongoose.model('Token', TokenSchema)

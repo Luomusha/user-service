@@ -1,18 +1,23 @@
 import {Schema} from 'mongoose'
+import {mongoose} from "../../db";
 
 /**
- * client	Object	The return value.
- * client.id	String	A unique string identifying the client.
- * [client.redirectUris]	Array<String>	Redirect URIs allowed for the client. Required for the authorization_code grant.
- * client.grants	Array<String>	Grant types allowed for the client.
- * [client.accessTokenLifetime]	Number	Client-specific lifetime of generated access tokens in seconds.
- * [client.refreshTokenLifetime]	Number	Client-specific lifetime of generated refresh tokens in seconds.
+ * code	Object	The return value.
+ * code.code	String	The authorization code passed to getAuthorizationCode().
+ * code.expiresAt	Date	The expiry time of the authorization code.
+ * [code.redirectUri]	String	The redirect URI of the authorization code.
+ * [code.scope]	String	The authorized scope of the authorization code.
+ * code.client	Object	The client associated with the authorization code.
+ * code.client.id	String	A unique string identifying the client.
+ * code.user	Object	The user associated with the authorization code.
  */
 export const CodeSchema = new Schema({
-  id:Schema.Types.ObjectId,
-  clientSecret: String,
-  redirectUris: [String],
-  grants: [String],
-  accessTokenLifetime: Number,
-  refreshTokenLifetime: Number,
+  authorizationCode: String,
+  expiresAt: Date,
+  redirectUri: String,
+  scope: String,
+  client: {type: Schema.Types.ObjectId, ref: 'Client'},
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
 });
+
+export const CodeModel = mongoose.model('Code', CodeSchema)

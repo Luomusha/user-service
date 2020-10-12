@@ -1,4 +1,5 @@
 import {Schema} from 'mongoose'
+import {mongoose} from "../../db";
 
 /**
  * client	Object	The return value.
@@ -9,10 +10,11 @@ import {Schema} from 'mongoose'
  * [client.refreshTokenLifetime]	Number	Client-specific lifetime of generated refresh tokens in seconds.
  */
 export const ClientSchema = new Schema({
-  id:Schema.Types.ObjectId,
   clientSecret: String,
   redirectUris: [String],
   grants: [String],
   accessTokenLifetime: Number,
   refreshTokenLifetime: Number,
 });
+
+export const ClientModel = mongoose.model('Client', ClientSchema);

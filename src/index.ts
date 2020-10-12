@@ -9,7 +9,7 @@ sequelize.authenticate().then(() => {
   console.log('mysql sync...');
 });
 
-mongoose.connect(MONGO_URI).then(() => {
+mongoose.connect(MONGO_URI, {useNewUrlParser: true}).then(() => {
   console.log('mongo connected...')
 }).catch((e) => {
   console.log(e)

@@ -1,28 +1,29 @@
-const model = {
+import {AuthorizationCode, AuthorizationCodeModel, Client, PasswordModel, Token} from "oauth2-server";
+import {getClientById} from "../client";
+import {saveCode} from "../code";
+import {saveToken} from "../token";
+import {getCodeByAuthorizationCode} from "../code/CodeService";
+import {getTokenByAccessToken} from "../token/TokenService";
+
+export const model: AuthorizationCodeModel | PasswordModel = {
+
   /**
    * request authentication
    * @param accessToken
    */
   getAccessToken: async (accessToken) => {
-
-  },
-
-  /**
-   * refresh_token grant
-   * @param refreshToken
-   */
-  getRefreshToken: async (refreshToken) => {
-
-
+    const token = await getTokenByAccessToken(accessToken)
+    return token
   },
 
   /**
    * authorization_code grant
    * @param authorizationCode
-   * @returns {Promise<void>}
+   * @returns {Promise<AuthorizationCode>}
    */
   getAuthorizationCode: async (authorizationCode) => {
-
+    const code = await getCodeByAuthorizationCode(authorizationCode)
+    return code
   },
 
   /**
@@ -32,10 +33,9 @@ const model = {
    *  password grant
    * @param clientId
    * @param clientSecret
-   * @returns {Promise<{id: string, redirectUris: string[], grants: string[], accessTokenLifetime: number, refreshTokenLifetime: number}>}
+   * @returns {Promise<Client>}
    */
-  getClient: async (clientId, clientSecret) => {
-  },
+  getClient: getClientById,
 
   /**
    * password grant
@@ -43,15 +43,7 @@ const model = {
    * @param password
    */
   getUser: async (username, password) => {
-
-  },
-
-  /**
-   * client_credentials grant
-   * @param client
-   */
-  getUserFromClient: async (client) => {
-
+    return {}
   },
 
   /**
@@ -62,10 +54,10 @@ const model = {
    * @param token
    * @param client
    * @param user
-   * @returns {Promise<void>}
+   * @returns {Promise<Token>}
    */
   saveToken: async (token, client, user) => {
-
+    return await saveToken({...token, client, user});
   },
 
   /**
@@ -73,31 +65,30 @@ const model = {
    * @param code
    * @param client
    * @param user
-   * @returns {Promise<void>}
+   * @returns {Promise<AuthorizationCode>}
    */
   saveAuthorizationCode: async (code, client, user) => {
-
+    const codeModel = await saveCode({...code, user, client});
+    return codeModel
   },
 
   /**
    * authorization_code grant
    * @param code
-   * @returns {Promise<void>}
+   * @returns {Promise<boolean>}
    */
   revokeAuthorizationCode: async (code) => {
-
+    return true
   },
 
   /**
    * request authentication
-   * @param accessToken
+   * @param token
    * @param scope
    */
-  verifyScope: (accessToken, scope) => {
-
-
+  verifyScope: async (token, scope) => {
+    console.log(token, scope)
+    return true
   },
 
 }
-
-export {model}

@@ -1,7 +1,9 @@
 import {Sequelize} from 'sequelize';
+import * as fs from 'fs';
 import {MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_PORT, MYSQL_USERNAME} from '../config';
 
 console.log(MYSQL_PORT, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_DATABASE)
+const logStream = fs.createWriteStream('./sql.log', {'flags': 'a'});
 
 export const sequelize = new Sequelize({
   dialect: 'mysql',
@@ -13,5 +15,5 @@ export const sequelize = new Sequelize({
   define: {
     freezeTableName: true,
   },
-  logging: console.log,
+  logging: msg => logStream.write(msg + '\n'),
 });

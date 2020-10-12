@@ -1,6 +1,6 @@
 import {DataTypes, Model} from 'sequelize';
 import {sequelize} from '../db';
-import {GENDER, PLATFORM, USER_ROLE} from '../type';
+import {GENDER, PLATFORM, USER_ROLE, UserBase} from '../type';
 
 
 /**

@@ -3,8 +3,8 @@ import {authenticate, authorize, token} from "../controller/OauthController";
 
 const oauthRouter = new Router();
 
-oauthRouter.get('/', authorize)
-oauthRouter.post('/', token)
-oauthRouter.get('/', authenticate)
+oauthRouter.get('/authorize', authorize)
+oauthRouter.post('/token', token)
+oauthRouter.get('/aaa', authenticate)
 
 export default oauthRouter
