@@ -8,3 +8,12 @@ export const saveUser = async (user:User):Promise<User> => {
   return result.toObject()
 }
 
+
+
+export const findUsers = async ():Promise<User[]> => {
+  const userDocuments = await UserModel.find();
+  const users = userDocuments.map(user => user.toObject())
+  return users
+}
+
+

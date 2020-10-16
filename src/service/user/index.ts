@@ -1,4 +1,4 @@
-import {saveUser } from "./UserService";
+import {findUsers, saveUser } from "./UserService";
 
-export {saveUser}
+export {saveUser, findUsers}
 

@@ -7,6 +7,7 @@ const ClientRouter = new Router<DefaultState, Context>();
 ClientRouter.get('/', home)
 ClientRouter.get('/login', login)
 ClientRouter.get('/register', register)
+
 ClientRouter.post('/session', session)
 
 export default ClientRouter;

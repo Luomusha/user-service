@@ -1,10 +1,27 @@
 import {Context, Next} from 'koa';
-import {UserBaseSchema} from '../../model/UserBaseSchema';
-import {UserBase} from "../../type";
+import {PLATFORM, User, USER_ROLE} from "../../type";
+import {findUsers, saveUser} from "../../service/user";
+import {saveAuthentication} from "../../service/authentication";
 
 export const getUsers = async (ctx: Context, next: Next) => {
-  ctx.body = 'ok';
-  const users: UserBase[] = await UserBaseSchema.findAll({});
-  console.log(users);
+  const users: User[] = await findUsers();
+  ctx.body = users;
+  await next();
+};
+
+export const postUser = async (ctx: Context, next: Next) => {
+  const {username, password} = ctx.request.body;
+  const user: User = await saveUser({
+    username,
+    userRole: USER_ROLE.normal,
+    registerSource: PLATFORM.username
+  });
+  const authentication = await saveAuthentication({
+    user,
+    identityType: PLATFORM.username,
+    identifier: username,
+    certificate: password,
+  })
+  ctx.body = user
   await next();
 };
