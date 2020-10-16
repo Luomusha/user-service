@@ -1,3 +1,3 @@
-import {removeCode, saveCode} from "./CodeService";
+import {getCodeByAuthorizationCode, removeCode, saveCode} from "./CodeService";
 
-export {saveCode, removeCode}
+export {saveCode, removeCode, getCodeByAuthorizationCode}

@@ -1,5 +1,5 @@
 import {Schema} from 'mongoose'
-import {GENDER, USER_ROLE} from "../../type";
+import {GENDER, PLATFORM, USER_ROLE} from "../../type";
 import {mongoose} from "../../db";
 
 /**
@@ -18,15 +18,21 @@ import {mongoose} from "../../db";
 const UserSchema = new Schema({
   username: {type: String, required: true, unique: true},
   nickname: {type: String, required: true, default: '二狗子'},
-  registerSource: {type: String, required: true, immutable: true},
-  gender: {type: String, default: GENDER.male},
+  registerSource: {
+    type: String,
+    required: true,
+    immutable: true,
+    enum: [PLATFORM.username, PLATFORM.wechat, PLATFORM.qq, PLATFORM.weibo]
+  },
+  gender: {type: String, default: GENDER.male, enum: [GENDER.male, GENDER.female]},
   face: {type: String},
   signature: {type: String},
-  userRole: {type: String, default: USER_ROLE.normal},
+  userRole: {type: String, default: USER_ROLE.normal, enum: [USER_ROLE.normal, USER_ROLE.admin]},
   email: {type: String, unique: true},
   emailBindTime: {type: Date},
   mobile: {type: String, unique: true},
   mobileBindTime: {type: Date},
 })
+
 
 export const UserModel = mongoose.model('User', UserSchema)

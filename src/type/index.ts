@@ -1,6 +1,6 @@
-export enum PLATFORM { 'username', 'mobile', 'email', 'wechat', 'qq', 'weibo'}
+export enum PLATFORM { 'username' = 'username', 'mobile' = 'mobile', 'email' = 'email', 'wechat' = "wechat", 'qq' = "qq", 'weibo' = "weibo"}
 
-export enum USER_ROLE { 'normal', 'admin'}
+export enum USER_ROLE { 'normal' = 'normal', 'admin' = 'admin'}
 
 export enum GENDER {'male' = 'male', 'female' = 'female'}
 
@@ -21,6 +21,13 @@ export interface User {
   email: string;
   emailBindTime: Date;
   face: string;
+}
+
+export interface Authentication {
+  identityType: string;
+  identifier: string;
+  certificate: string;
+  user: User | string;
 }
 
 export interface UserBase {

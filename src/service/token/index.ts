@@ -1,3 +1,3 @@
-import { removeToken, saveToken } from "./TokenService";
+import {getTokenByAccessToken, saveToken} from "./TokenService";
 
-export {saveToken, removeToken}
+export {saveToken, getTokenByAccessToken}

@@ -1,6 +1,5 @@
 import {Schema} from 'mongoose'
 import {mongoose} from "../../db";
-import {CodeSchema} from "../code/CodeSchema";
 
 /**
  * token    Object    The token(s) to be saved.

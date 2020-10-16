@@ -1,9 +1,10 @@
 import {Context, Next} from 'koa';
-import {UserBase, UserBaseSchema} from '../model/UserBaseSchema';
+import {UserBaseSchema} from '../../model/UserBaseSchema';
+import {UserBase} from "../../type";
 
 export const getUsers = async (ctx: Context, next: Next) => {
   ctx.body = 'ok';
-  const users:UserBase[] = await UserBaseSchema.findAll({});
+  const users: UserBase[] = await UserBaseSchema.findAll({});
   console.log(users);
   await next();
 };

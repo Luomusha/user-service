@@ -1,5 +1,5 @@
 import {User} from "../../type";
-import { UserModel } from "./UserSchema";
+import {UserModel} from "./UserSchema";
 
 
 export const saveUser = async (user:User):Promise<User> => {

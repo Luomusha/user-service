@@ -1,14 +1,17 @@
 import * as Router from 'koa-router';
-import usersRouter from './UsersRouter';
-import authUserRouter from './AuthUserRouter';
-import tokenRouter from './TokenRouter';
-import oauthRouter from "./OauthRouter";
+import UsersRouter from './Users/UsersRouter';
+import {AuthUserRouter} from './AuthUser';
+import {OauthRouter} from "./Oauth";
+import ClientRouter from "./Client/ClientRouter";
 
 
 const router = new Router();
-router.use('/user', authUserRouter.routes());
-router.use('/users', usersRouter.routes());
-router.use('/token', tokenRouter.routes());
-router.use('/oauth', oauthRouter.routes());
+
+
+router.use('/user', AuthUserRouter.routes());
+router.use('/users', UsersRouter.routes());
+router.use('/oauth', OauthRouter.routes());
+
+router.use(ClientRouter.routes());
 
 export default router;

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="./style/common.css">
+  <style>
+      body {
+          background-color: #eeeeee;
+      }
+
+      main, header, footer {
+          background: white;
+          padding: 20px;
+      }
+
+      fieldset {
+          margin: auto 20px;
+      }
+      legend{
+          padding: 10px;
+      }
+
+      label {
+          display: flex;
+          padding: 10px;
+          justify-content: space-between;
+      }
+
+      input {
+          display: block;
+          padding: 10px;
+      }
+  </style>
+</head>
+<body>
+<header>
+  Logo
+</header>
+<main>
+  <div>
+    Welcome to User Service.
+  </div>
+  <form action="/session" method="post">
+    <fieldset>
+      <legend>Login</legend>
+
+      <label>
+        Password:
+        <input type="text" name="username">
+      </label>
+
+      <label>
+        Username:
+        <input type="password" name="password">
+      </label>
+    </fieldset>
+    <input type="hidden" name="grant_type" value="password">
+    <input type="hidden" name="scope" value="read">
+    <input type="submit">
+  </form>
+</main>
+<footer>
+  @ABC
+</footer>
+</body>
+</html>

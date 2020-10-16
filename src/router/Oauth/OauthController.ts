@@ -1,4 +1,4 @@
-import {oauth, Request, Response} from '../service/oauth'
+import {oauth, Request, Response} from '../../service/oauth'
 
 export const authorize = async (ctx, next) => {
   const oauthRequest = new Request(ctx.request);
@@ -13,9 +13,10 @@ export const authorize = async (ctx, next) => {
     authenticateHandler: authenticateHandler,
   }
   const code = await oauth.authorize(oauthRequest, oauthResponse, options)
-  ctx.body = oauthResponse.body
-  ctx.status = oauthResponse.status
-  ctx.set(oauthResponse.headers)
+  // ctx.body = oauthResponse.body
+  // ctx.status = oauthResponse.status
+  // ctx.set(oauthResponse.headers)
+  await ctx.render('404');
   await next();
 }
 
