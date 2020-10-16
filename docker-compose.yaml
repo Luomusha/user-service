@@ -21,8 +21,8 @@ services:
     container_name: node
     build: .
     ports:
-      - target: ${USER_SERVICE_PORT}
-        published: ${USER_SERVICE_PORT}
+      - target: ${SERVICE_PORT}
+        published: ${SERVICE_PORT}
         protocol: tcp
     depends_on:
       - db
@@ -35,7 +35,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PORT: ${MYSQL_PORT}
-      USER_SERVICE_PORT: ${USER_SERVICE_PORT}
+      USER_SERVICE_PORT: ${SERVICE_PORT}
 
 networks:
   default:

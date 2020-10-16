@@ -1,7 +1,7 @@
 import {Context, Next} from 'koa';
 import {PLATFORM, User, USER_ROLE} from "../../type";
-import {findUsers, saveUser} from "../../service/user";
-import {saveAuthentication} from "../../service/authentication";
+import {findUsers, saveUser} from "../../service/User";
+import {saveAuthentication} from "../../service/Authentication";
 
 export const getUsers = async (ctx: Context, next: Next) => {
   const users: User[] = await findUsers();

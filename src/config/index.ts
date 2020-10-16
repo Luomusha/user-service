@@ -10,5 +10,5 @@ export const MYSQL_HOST = process.env.MYSQL_HOST;
 
 export const MONGO_URI = "mongodb://localhost/test"
 
-export const USER_SERVICE_PORT = Number(process.env.USER_SERVICE_PORT);
+export const SERVICE_PORT = Number(process.env.SERVICE_PORT);
 export const APP_KEY = process.env.APP_KEY || 'user-server';

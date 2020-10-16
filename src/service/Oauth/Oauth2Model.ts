@@ -1,8 +1,8 @@
 import {AuthorizationCode, AuthorizationCodeModel, Client, PasswordModel, Token} from "oauth2-server";
-import {getClientById} from "../client";
-import {getCodeByAuthorizationCode, saveCode} from "../code";
-import {getTokenByAccessToken, saveToken} from "../token";
-import {getAuthenticationByUsername} from "../authentication/AuthenticationService";
+import {getClientById} from "../Client";
+import {getCodeByAuthorizationCode, saveCode} from "../Code";
+import {getTokenByAccessToken, saveToken} from "../Token";
+import {getAuthenticationByUsername} from "../Authentication/AuthenticationService";
 
 export const model: AuthorizationCodeModel | PasswordModel = {
 

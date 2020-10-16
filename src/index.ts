@@ -1,6 +1,6 @@
 import app from './app';
 import {mongoose, sequelize} from './db';
-import {MONGO_URI, USER_SERVICE_PORT} from './config';
+import {MONGO_URI, SERVICE_PORT} from './config';
 
 sequelize.authenticate().then(() => {
   console.log('mysql connected...');
@@ -15,6 +15,6 @@ mongoose.connect(MONGO_URI, {useNewUrlParser: true}).then(() => {
   console.log(e)
 })
 
-app.listen(USER_SERVICE_PORT);
-console.log('server listen at', USER_SERVICE_PORT);
+app.listen(SERVICE_PORT);
+console.log('server listen at', SERVICE_PORT);
 
