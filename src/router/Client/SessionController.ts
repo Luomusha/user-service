@@ -1,14 +1,24 @@
 import fetch from 'node-fetch'
 import {Context, Next} from "koa";
 
-export const session = async (ctx: Context, next: Next) => {
+export const beforePostSession = async (ctx: Context, next: Next) => {
+  const {username, password} = ctx.request.body;
+  if (!username || !password) {
+    ctx.status = 400;
+    ctx.message = 'Bad Request'
+  } else {
+    await next();
+  }
+}
+
+export const postSession = async (ctx: Context, next: Next) => {
   const params = new URLSearchParams()
   params.append('client_id', "5f83175688fb8a3c94660150")
   params.append('client_secret', "ppp")
   params.append('grant_type', 'password')
   params.append('username', ctx.request.body.username)
   params.append('password', ctx.request.body.password)
-  const response: Response = await fetch('http://localhost:8080/oauth/token', {
+  const response = await fetch('http://localhost:8080/oauth/token', {
     method: 'POST',
     body: params,
     headers: {

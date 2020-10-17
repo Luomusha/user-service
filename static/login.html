@@ -17,25 +17,44 @@
       fieldset {
           margin: auto 20px;
       }
-      legend{
+
+      legend {
           padding: 10px;
       }
 
       label {
-          display: flex;
           padding: 10px;
-          justify-content: space-between;
+      }
+
+      abbr {
+          text-decoration: none;
       }
 
       input {
           display: block;
           padding: 10px;
+          width: 100%;
+      }
+
+      input:valid {
+          border: 2px solid green;
+      }
+
+      input:invalid {
+          border: 2px solid darkred;
+      }
+
+      label:not(label + input:after) {
+          content: '不符合输入规则';
+      }
+      fieldset:focus-within{
+          background: #eeffee;
       }
   </style>
 </head>
 <body>
 <header>
-  Logo
+  <a href="/">Logo</a>
 </header>
 <main>
   <div>
@@ -45,19 +64,19 @@
     <fieldset>
       <legend>Login</legend>
 
-      <label>
-        Password:
-        <input type="text" name="username">
+      <label for="username">
+        <abbr title="This field is mandatory">*</abbr>Username:
       </label>
+      <input id="username" type="text" name="username" required maxlength="12" minlength="3">
 
-      <label>
-        Username:
-        <input type="password" name="password">
+      <label for="password">
+        <abbr title="This field is mandatory">*</abbr>Password:
       </label>
+      <input id="password" type="password" name="password" required minlength="6" maxlength="20">
     </fieldset>
     <input type="hidden" name="grant_type" value="password">
     <input type="hidden" name="scope" value="read">
-    <input type="submit">
+    <input type="submit" value="sign in">
   </form>
 </main>
 <footer>

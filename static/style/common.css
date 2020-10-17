@@ -11,6 +11,6 @@ main, header, footer {
     margin: auto;
 }
 
-div {
+div, input, label {
     box-sizing: border-box;
 }

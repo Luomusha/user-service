@@ -4,5 +4,7 @@ import {Context, DefaultState} from "koa";
 
 const UserRouter = new Router<DefaultState, Context>();
 UserRouter.get('/', getUsers);
+
+
 UserRouter.post('/', postUser);
 export default UserRouter;
