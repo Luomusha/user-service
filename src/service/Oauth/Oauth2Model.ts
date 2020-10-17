@@ -81,8 +81,7 @@ export const model: AuthorizationCodeModel | PasswordModel = {
    * @param scope
    */
   verifyScope: async (token, scope) => {
-    console.log(token, scope)
-    return true
+    return token.scope === scope;
   },
 
 

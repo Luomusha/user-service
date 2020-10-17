@@ -33,11 +33,11 @@ export const token = async (ctx, next) => {
 export const authenticate = async (ctx, next) => {
   const oauthRequest = new Request(ctx.request);
   const oauthResponse = new Response(ctx.response);
-
+  const {scope} = ctx.request.body;
   try {
-
-    const token = await oauth.authenticate(oauthRequest, oauthResponse)
-    console.log(token);
+    const token = await oauth.authenticate(oauthRequest, oauthResponse, {
+      scope: scope
+    })
     ctx.body = oauthResponse.body;
     ctx.status = oauthResponse.status;
     ctx.set(oauthResponse.headers);

@@ -10,5 +10,6 @@ export const saveToken = async (token: Token): Promise<Token> => {
 
 export const getTokenByAccessToken = async (accessToken: string) => {
   const tokenInstance = await TokenModel.findOne({accessToken})
+  console.log("getAccessToken", accessToken, tokenInstance)
   return tokenInstance.toObject();
 }
