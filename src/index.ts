@@ -1,5 +1,5 @@
 import app from './app';
-import {mongoose, sequelize} from './db';
+import {mongoose, redis, sequelize} from './db';
 import {MONGO_URI, SERVICE_PORT} from './config';
 
 sequelize.authenticate().then(() => {
@@ -18,3 +18,5 @@ mongoose.connect(MONGO_URI, {useNewUrlParser: true}).then(() => {
 app.listen(SERVICE_PORT);
 console.log('server listen at', SERVICE_PORT);
 
+
+console.log("redis connected...")

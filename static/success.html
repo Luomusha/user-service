@@ -17,19 +17,38 @@
       fieldset {
           margin: auto 20px;
       }
-      legend{
+
+      legend {
           padding: 10px;
       }
 
       label {
-          display: flex;
           padding: 10px;
-          justify-content: space-between;
+      }
+
+      abbr {
+          text-decoration: none;
       }
 
       input {
           display: block;
           padding: 10px;
+          width: 100%;
+      }
+
+      input:valid {
+          border: 2px solid green;
+      }
+
+      input:invalid {
+          border: 2px solid darkred;
+      }
+
+      label:not(label + input:after) {
+          content: '不符合输入规则';
+      }
+      fieldset:focus-within{
+          background: #eeffee;
       }
   </style>
 </head>
@@ -38,28 +57,9 @@
   <a href="/">Logo</a>
 </header>
 <main>
-  <div>
-    Welcome to User Service.
-    This is Sign up page.
-  </div>
-  <form action="/users" method="post">
-    <fieldset>
-      <legend>Sign Up</legend>
-
-      <label>
-        Password:
-        <input type="text" name="username">
-      </label>
-
-      <label>
-        Username:
-        <input type="password" name="password">
-      </label>
-    </fieldset>
-    <input type="hidden" name="grant_type" value="password">
-    <input type="hidden" name="scope" value="read">
-    <input type="submit" value="sign up">
-  </form>
+  <h1>
+    Sign in success.
+  </h1>
 </main>
 <footer>
   @ABC

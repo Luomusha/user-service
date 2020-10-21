@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
 import {Context, Next} from "koa";
+import fetch from "node-fetch";
 
 export const beforePostSession = async (ctx: Context, next: Next) => {
   const {username, password} = ctx.request.body;
@@ -26,13 +26,9 @@ export const postSession = async (ctx: Context, next: Next) => {
     }
   });
   const token = await response.json();
-  console.log(token)
-  ctx.cookies.set('token', JSON.stringify(token), {
-    httpOnly: true,
-    overwrite: true,
-    signed: true,
-    maxAge: token.expires_in,
+  ctx.cookies.set('session', token, {
+    maxAge: 36000,
   })
-  ctx.redirect('/')
+  ctx.redirect('/');
   await next();
 }

@@ -4,10 +4,13 @@ export enum USER_ROLE { 'normal' = 'normal', 'admin' = 'admin'}
 
 export enum GENDER {'male' = 'male', 'female' = 'female'}
 
-export enum CLIENT {'web' = 'web', 'wechat' = 'wechat'}
-
 export enum OPERATING_SYSTEM { 'android', 'ios', 'windows', 'linux', 'osx'}
 
+export enum RELATIONSHIP_TYPE {
+  'Consanguinity' = 'Consanguinity',
+  'Marriage' = 'Marriage',
+  'FictitiousBlood' = 'FictitiousBlood',
+}
 interface UserBasic{
   userRole: USER_ROLE;
   registerSource: PLATFORM;
@@ -36,3 +39,29 @@ export interface Authentication {
   user: User | string;
 }
 
+
+export interface Member {
+  id: number,
+  name: string,
+  birthday: string,
+  gender: GENDER,
+}
+
+export interface Family {
+  id?: number;
+  host: Member | number,
+  owner: string,
+}
+
+export interface FamilyMember {
+  id: number,
+  familyId: number;
+  memberId: number;
+}
+
+export interface Relationship {
+  id: number;
+  from: number;
+  to: number;
+  relationshipType: RELATIONSHIP_TYPE
+}

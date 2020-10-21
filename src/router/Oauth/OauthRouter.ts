@@ -1,11 +1,14 @@
 import * as Router from 'koa-router';
-import {authenticate, authorize, token} from "./OauthController";
+import {
+  authorize,
+  token
+} from "./OauthController";
 import {Context, DefaultState} from "koa";
 
 const OauthRouter = new Router<DefaultState, Context>();
 
-OauthRouter.get('/authorize', authorize)
-OauthRouter.post('/token', token)
-OauthRouter.post('/authenticate', authenticate)
+OauthRouter
+  .get('/authorize', authorize)
+  .post('/token', token)
 
 export default OauthRouter
