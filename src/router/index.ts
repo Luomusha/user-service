@@ -10,12 +10,12 @@ import {session} from "./Session/SessionMiddleware";
 
 const router = new Router();
 
+router.use('/session', SessionRouter.routes());
 
 router.use('/user', session, authenticate, AuthUserRouter.routes());
 router.use('/users', UserRouter.routes());
 router.use('/oauth', OauthRouter.routes());
 
-router.use('/session', SessionRouter.routes());
 
 router.use('/members',  MemberRouter.routes());
 router.use('/genealogies',  GenealogyRouter.routes());

@@ -12,3 +12,8 @@ export const saveSession = async (key: string, token: Token) => {
   const base64Session = buffer.toString('base64')
   return base64Session
 }
+
+export const removeSession = async (key: string):Promise<number> => {
+  const removeCount = await redis.del(key);
+  return removeCount
+}

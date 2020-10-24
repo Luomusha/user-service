@@ -1,6 +1,6 @@
 import * as Router from 'koa-router';
 import {Context, DefaultState} from "koa";
-import {beforePostSession, getSession, postSession} from "./SessionController";
+import {beforeDeleteSession, beforePostSession, deleteSession, getSession, postSession} from "./SessionController";
 
 const SessionRouter = new Router<DefaultState, Context>();
 
@@ -8,5 +8,6 @@ const SessionRouter = new Router<DefaultState, Context>();
 SessionRouter
   .get('/', getSession)
   .post('/', beforePostSession, postSession)
+  .delete('/', beforeDeleteSession, deleteSession)
 
 export default SessionRouter

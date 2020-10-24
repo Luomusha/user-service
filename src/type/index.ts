@@ -49,6 +49,8 @@ export interface Member {
 
 export interface Genealogy {
   id?: number;
+  name: string;
+  cover: string;
   owner: string,
 }
 

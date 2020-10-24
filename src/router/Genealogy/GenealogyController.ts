@@ -11,8 +11,10 @@ export const getGenealogies = async (ctx: Context, next: Next) => {
 }
 
 export const postGenealogy = async (ctx: Context, next: Next) => {
-  const {owner} = ctx.request.body;
+  const {name, cover, owner} = ctx.request.body;
   const genealogyInstance = await saveGenealogy({
+    name,
+    cover,
     owner,
   })
   ctx.body = genealogyInstance
