@@ -1,23 +1,24 @@
 import * as Router from 'koa-router';
 import {UserRouter} from './User';
 import {AuthUserRouter} from './AuthUser';
-import {OauthRouter} from "./Oauth";
+import {authenticate, OauthRouter} from "./Oauth";
 import {MemberRouter} from "./Member";
-import {FamilyRouter} from "./Family";
+import {GenealogyRouter} from "./Genealogy";
 import {SessionRouter} from "./Session";
+import {session} from "./Session/SessionMiddleware";
 
 
 const router = new Router();
 
 
-router.use('/user', AuthUserRouter.routes());
+router.use('/user', session, authenticate, AuthUserRouter.routes());
 router.use('/users', UserRouter.routes());
 router.use('/oauth', OauthRouter.routes());
 
 router.use('/session', SessionRouter.routes());
 
 router.use('/members',  MemberRouter.routes());
-router.use('/families',  FamilyRouter.routes());
+router.use('/genealogies',  GenealogyRouter.routes());
 
 
 

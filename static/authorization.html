@@ -60,19 +60,19 @@
   <div>
     Welcome to User Service.
   </div>
-  <form action="/oauth" method="post">
+  <form action="/session" method="post">
     <fieldset>
       <legend>Login</legend>
 
       <label for="username">
         <abbr title="This field is mandatory">*</abbr>Username:
       </label>
-      <input id="username" type="text" name="username" required maxlength="12" minlength="3">
+      <input id="username" type="text" name="username" value="lossa" required maxlength="12" minlength="3">
 
       <label for="password">
         <abbr title="This field is mandatory">*</abbr>Password:
       </label>
-      <input id="password" type="password" name="password" required minlength="6" maxlength="20">
+      <input id="password" type="password" name="password" value="123456" required minlength="6" maxlength="20">
     </fieldset>
     <input type="hidden" name="grant_type" value="password">
     <input type="hidden" name="scope" value="read">

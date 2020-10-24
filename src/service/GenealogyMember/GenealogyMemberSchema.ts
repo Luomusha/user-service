@@ -1,22 +1,22 @@
 import {DataTypes, Model} from "sequelize";
-import {FamilyMember} from "../../type";
+import {GenealogyMember} from "../../type";
 import {sequelize} from "../../db";
 
-class FamilyMemberSchema extends Model implements FamilyMember {
+class GenealogyMemberSchema extends Model implements GenealogyMember {
   id: number;
-  familyId: number;
+  genealogyId: number;
   memberId: number;
 }
 
 
-FamilyMemberSchema.init({
+GenealogyMemberSchema.init({
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
-  familyId: {
+  genealogyId: {
     type: DataTypes.BIGINT,
     allowNull: false,
 
@@ -28,9 +28,9 @@ FamilyMemberSchema.init({
 }, {
   sequelize: sequelize,
   underscored: true,
-  tableName: 'FamilyMember',
+  tableName: 'GenealogyMember',
   charset: 'utf8mb4',
   comment: '家庭成员关系表',
 })
 
-export {FamilyMemberSchema}
+export {GenealogyMemberSchema}

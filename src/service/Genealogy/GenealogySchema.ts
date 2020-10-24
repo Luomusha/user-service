@@ -1,20 +1,19 @@
 import {DataTypes, Model} from 'sequelize';
 import {sequelize} from '../../db';
-import {Family, Member} from "../../type";
+import {Genealogy, Member} from "../../type";
 
 
 /**
  * 家庭信息表
  */
-class FamilySchema extends Model implements Family {
+class GenealogySchema extends Model implements Genealogy {
   id?: number;
-  host: Member | number;
   owner: string;
   createTime: string;
   updateTime: string;
 }
 
-FamilySchema.init({
+GenealogySchema.init({
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
@@ -24,17 +23,12 @@ FamilySchema.init({
   owner: {
     type: DataTypes.STRING,
   },
-  host: {
-    type: DataTypes.BIGINT,
-    allowNull: false,
-  }
-
 }, {
   sequelize: sequelize,
   underscored: true,
-  tableName: 'Family',
+  tableName: 'Genealogy',
   charset: 'utf8mb4',
   comment: '家庭信息',
 });
 
-export {FamilySchema};
+export {GenealogySchema};

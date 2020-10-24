@@ -36,7 +36,7 @@ export interface Authentication {
   identityType: string;
   identifier: string;
   certificate: string;
-  user: User | string;
+  user: User;
 }
 
 
@@ -47,15 +47,14 @@ export interface Member {
   gender: GENDER,
 }
 
-export interface Family {
+export interface Genealogy {
   id?: number;
-  host: Member | number,
   owner: string,
 }
 
-export interface FamilyMember {
+export interface GenealogyMember {
   id: number,
-  familyId: number;
+  genealogyId: number;
   memberId: number;
 }
 
@@ -64,4 +63,12 @@ export interface Relationship {
   from: number;
   to: number;
   relationshipType: RELATIONSHIP_TYPE
+}
+
+export type Token = {
+  "access_token": string;
+  "refresh_token": string;
+  "token_type": string;
+  "expires_in": number;
+
 }

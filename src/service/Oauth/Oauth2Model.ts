@@ -1,4 +1,4 @@
-import {AuthorizationCode, AuthorizationCodeModel, Client, PasswordModel, Token} from "oauth2-server";
+import {AuthorizationCode, AuthorizationCodeModel, Client, PasswordModel, Token, User} from "oauth2-server";
 import {getClientById} from "../Client";
 import {getCodeByAuthorizationCode, saveCode} from "../Code";
 import {getTokenByAccessToken, saveToken} from "../Token";
@@ -35,9 +35,9 @@ export const model: AuthorizationCodeModel | PasswordModel = {
    * @param username
    * @param password
    */
-  getUser: async (username,password) => {
-      const authentication = await getAuthenticationByUsername(username,password);
-      return authentication.user;
+  getUser: async (username, password): Promise<User> => {
+    const authentication = await getAuthenticationByUsername(username, password);
+    return authentication.user;
   },
 
   /**
@@ -50,7 +50,7 @@ export const model: AuthorizationCodeModel | PasswordModel = {
    * @param user
    * @returns {Promise<Token>}
    */
-  saveToken: async (token, client, user) => {
+  saveToken: async (token, client, user): Promise<Token> => {
     return await saveToken({...token, client, user});
   },
 

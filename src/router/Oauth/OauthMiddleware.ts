@@ -8,6 +8,7 @@ export const authenticate = async (ctx, next) => {
     const token = await oauth.authenticate(oauthRequest, oauthResponse, {
       scope: scope
     })
+    ctx.state.token = token;
     ctx.body = oauthResponse.body;
     ctx.status = oauthResponse.status;
     ctx.set(oauthResponse.headers);
