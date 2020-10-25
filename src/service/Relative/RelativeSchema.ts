@@ -8,18 +8,43 @@ import {GENDER, Relative} from "../../type";
  */
 class RelativeSchema extends Model implements Relative {
   id: number;
+  uid: string;
   birthday: string;
   gender: GENDER;
   name: string;
 }
 
 RelativeSchema.init({
-  uid: {
+  id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
+    comment: "亲属id",
   },
+  uid: {
+    type: DataTypes.STRING,
+    primaryKey: true,
+    allowNull: false,
+    comment: "关联用户id",
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: "亲戚姓名",
+  },
+  gender: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: GENDER.male,
+    comment: "亲戚性别",
+  },
+  birthday: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+    comment: "生日",
+  }
 }, {
     sequelize: sequelize,
     underscored: true,

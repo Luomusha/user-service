@@ -7,8 +7,15 @@ export const findRelatives = async () => {
 }
 
 export const saveRelative = async (relative: Relative) => {
+  console.log("###", relative)
+  try {
+
     const relativeInstance = await RelativeSchema.create(relative)
     return relativeInstance
+  } catch (e) {
+
+    console.log("***", e);
+  }
 }
 
 export const findRelativeById = async (relativeId:string) => {

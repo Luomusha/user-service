@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   emailBindTime: {type: Date},
   mobile: {type: String, unique: true},
   mobileBindTime: {type: Date},
-})
+}, {toObject: {virtuals: true},})
 
 
 export const UserModel = mongoose.model('User', UserSchema)

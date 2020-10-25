@@ -8,7 +8,10 @@ export const getRelatives = async (ctx: Context, next: Next) => {
 }
 
 export const postRelative: Middleware = async (ctx: Context, next: Next) => {
+  const {user} = ctx.state;
   const relative = ctx.request.body;
+  relative.uid = user.id;
+  console.log("user", user,user.id, user._id, typeof user._id, typeof user.id);
   const relativeDocument = await saveRelative(relative)
   ctx.body = relativeDocument;
   await next();

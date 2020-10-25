@@ -1,3 +1,4 @@
+import { session } from "./SessionMiddleware";
 import SessionRouter from "./SessionRouter";
 
-export {SessionRouter}
+export {SessionRouter, session}

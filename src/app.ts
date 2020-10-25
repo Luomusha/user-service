@@ -15,7 +15,18 @@ app.proxy = true;
 app.use(logger());
 app.use(koaStatic(staticRoot))
 app.use(koaViews(path.resolve(staticRoot)))
-app.use(koaBody());
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    uploadDir: path.join(staticRoot, "upload"),
+    keepExtensions: true,
+    maxFieldsSize:2 * 1024 * 1024,
+    onFileBegin:(name,file) => { // 文件上传前的设置
+      console.log(`name: ${name}`);
+      // console.log(file);
+    },
+  }
+}));
 app.use(router.routes());
 
 export default app;

@@ -41,10 +41,11 @@ export interface Authentication {
 
 
 export interface Relative {
-  id: number,
-  name: string,
-  birthday: string,
-  gender: GENDER,
+  id: number;
+  uid: string;
+  name: string;
+  birthday: string;
+  gender: GENDER;
 }
 
 export interface Genealogy {

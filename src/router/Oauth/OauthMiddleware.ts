@@ -9,6 +9,7 @@ export const authenticate = async (ctx, next) => {
       scope: scope
     })
     ctx.state.token = token;
+    ctx.state.user = token.user;
     ctx.body = oauthResponse.body;
     ctx.status = oauthResponse.status;
     ctx.set(oauthResponse.headers);

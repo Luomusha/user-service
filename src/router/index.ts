@@ -4,8 +4,8 @@ import {AuthUserRouter} from './AuthUser';
 import {authenticate, OauthRouter} from "./Oauth";
 import {RelativeRouter} from './Relative';
 import {GenealogyRouter} from "./Genealogy";
-import {SessionRouter} from "./Session";
-import {session} from "./Session/SessionMiddleware";
+import {session, SessionRouter} from "./Session";
+import {FileRouter} from "./File";
 
 
 const router = new Router();
@@ -17,8 +17,10 @@ router.use('/users', UserRouter.routes());
 router.use('/oauth', OauthRouter.routes());
 
 
-router.use('/relatives',  RelativeRouter.routes());
-router.use('/genealogies',  GenealogyRouter.routes());
+router.use('/relatives', session, authenticate, RelativeRouter.routes());
+router.use('/genealogies', GenealogyRouter.routes());
+
+router.use('/file', FileRouter.routes());
 
 
 
