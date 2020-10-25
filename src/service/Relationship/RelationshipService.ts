@@ -2,10 +2,10 @@ import {Relationship} from "../../type";
 import {RelationshipSchema} from "./RelationshipSchema";
 
 
-export const findMembersFromByMemberId = async(memberId:number) :Promise<Relationship[]>=>{
+export const findRelativesFromByRelativeId = async(relativeId:number) :Promise<Relationship[]>=>{
   const relationshipList = await RelationshipSchema.findAll({
     where:{
-      memberId: memberId
+      relativeId: relativeId
     }
   })
   return relationshipList

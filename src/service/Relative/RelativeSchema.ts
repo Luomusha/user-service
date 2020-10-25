@@ -1,19 +1,19 @@
 import {DataTypes, Model} from 'sequelize';
 import {sequelize} from '../../db';
-import {GENDER, Member} from "../../type";
+import {GENDER, Relative} from "../../type";
 
 
 /**
  * 家庭信息表
  */
-class MemberSchema extends Model implements Member {
+class RelativeSchema extends Model implements Relative {
   id: number;
   birthday: string;
   gender: GENDER;
   name: string;
 }
 
-MemberSchema.init({
+RelativeSchema.init({
   uid: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
@@ -23,10 +23,10 @@ MemberSchema.init({
 }, {
     sequelize: sequelize,
     underscored: true,
-    tableName: 'Member',
+    tableName: 'Relative',
     charset: 'utf8mb4',
     comment: '成员信息',
 });
 
-export {MemberSchema};
+export {RelativeSchema};
 

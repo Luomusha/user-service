@@ -7,9 +7,9 @@ export enum GENDER {'male' = 'male', 'female' = 'female'}
 export enum OPERATING_SYSTEM { 'android', 'ios', 'windows', 'linux', 'osx'}
 
 export enum RELATIONSHIP_TYPE {
-  'Consanguinity' = 'Consanguinity',
-  'Marriage' = 'Marriage',
-  'FictitiousBlood' = 'FictitiousBlood',
+  'Consanguinity' = 'Consanguinity',      // 血亲
+  'Marriage' = 'Marriage',                // 婚姻
+  'FictitiousBlood' = 'FictitiousBlood',  // 拟定血亲
 }
 interface UserBasic{
   userRole: USER_ROLE;
@@ -40,7 +40,7 @@ export interface Authentication {
 }
 
 
-export interface Member {
+export interface Relative {
   id: number,
   name: string,
   birthday: string,
@@ -54,10 +54,10 @@ export interface Genealogy {
   owner: string,
 }
 
-export interface GenealogyMember {
+export interface GenealogyRelative {
   id: number,
   genealogyId: number;
-  memberId: number;
+  relativeId: number;
 }
 
 export interface Relationship {

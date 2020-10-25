@@ -1,7 +1,7 @@
 import {Context, DefaultState, Next} from "koa";
 import {IParamMiddleware} from "koa-router";
-import {saveGenealogyMember} from "../../service/GenealogyMember";
-import {findMemberById} from "../../service/Member/MemberService";
+import {saveGenealogyRelative} from "../../service/GenealogyRelative";
+import {findRelativeById} from "../../service/Relative";
 import {findGenealogies, saveGenealogy} from "../../service/Genealogy";
 
 export const getGenealogies = async (ctx: Context, next: Next) => {
@@ -22,13 +22,13 @@ export const postGenealogy = async (ctx: Context, next: Next) => {
 }
 
 export const appendGenealogy: IParamMiddleware<DefaultState, Context> = async (genealogyId: string, ctx: Context, next: Next) => {
-  const member = await findMemberById(genealogyId);
-  ctx.assert(member, 401, 'member not exist')
-  ctx.state.member = member
+  const relative = await findRelativeById(genealogyId);
+  ctx.assert(relative, 401, 'relative not exist')
+  ctx.state.relative = relative
 }
 
-export const postMember = async (ctx: Context, next: Next) => {
-  const {genealogyId, memberId} = ctx.request.body
-  const genealogyMember = await saveGenealogyMember(genealogyId, memberId)
-  return genealogyMember
+export const postRelative = async (ctx: Context, next: Next) => {
+  const {genealogyId, relativeId} = ctx.request.body
+  const genealogyRelative = await saveGenealogyRelative(genealogyId, relativeId)
+  return genealogyRelative
 }

@@ -1,15 +1,15 @@
 import {DataTypes, Model} from "sequelize";
-import {GenealogyMember} from "../../type";
+import {GenealogyRelative} from "../../type";
 import {sequelize} from "../../db";
 
-class GenealogyMemberSchema extends Model implements GenealogyMember {
+class GenealogyRelativeSchema extends Model implements GenealogyRelative {
   id: number;
   genealogyId: number;
-  memberId: number;
+  relativeId: number;
 }
 
 
-GenealogyMemberSchema.init({
+GenealogyRelativeSchema.init({
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
@@ -21,16 +21,16 @@ GenealogyMemberSchema.init({
     allowNull: false,
 
   },
-  memberId: {
+  relativeId: {
     type: DataTypes.BIGINT,
     allowNull: false,
   },
 }, {
   sequelize: sequelize,
   underscored: true,
-  tableName: 'GenealogyMember',
+  tableName: 'GenealogyRelative',
   charset: 'utf8mb4',
   comment: '家庭成员关系表',
 })
 
-export {GenealogyMemberSchema}
+export {GenealogyRelativeSchema}

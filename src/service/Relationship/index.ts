@@ -1,3 +1,3 @@
-import {findMembersFromByMemberId} from "./RelationshipService";
+import {findRelativesFromByRelativeId} from "./RelationshipService";
 
-export {findMembersFromByMemberId}
+export {findRelativesFromByRelativeId}
