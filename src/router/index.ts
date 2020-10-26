@@ -20,7 +20,7 @@ router.use('/oauth', OauthRouter.routes());
 router.use('/relatives', session, authenticate, RelativeRouter.routes());
 router.use('/genealogies', GenealogyRouter.routes());
 
-router.use('/file', FileRouter.routes());
+router.use('/file', session, authenticate, FileRouter.routes());
 
 
 
