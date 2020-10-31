@@ -1,10 +1,19 @@
-import {AuthorizationCode, AuthorizationCodeModel, Client, PasswordModel, Token, User} from "oauth2-server";
+import {
+  AuthorizationCode,
+  AuthorizationCodeModel,
+  Client,
+  PasswordModel,
+  RefreshTokenModel,
+  Token,
+  User
+} from "oauth2-server";
 import {getClientById} from "../Client";
 import {getCodeByAuthorizationCode, saveCode} from "../Code";
 import {getTokenByAccessToken, saveToken} from "../Token";
 import {getAuthenticationByUsername} from "../Authentication/AuthenticationService";
+import {deleteToken, findTokenByRefreshToken} from "../Token/TokenService";
 
-export const model: AuthorizationCodeModel | PasswordModel = {
+export const model: AuthorizationCodeModel | PasswordModel | RefreshTokenModel = {
 
   /**
    * request authentication
@@ -84,5 +93,17 @@ export const model: AuthorizationCodeModel | PasswordModel = {
     return token.scope === scope;
   },
 
+  /**
+   * refresh_token
+   * @param refreshToken
+   */
+  getRefreshToken: findTokenByRefreshToken,
 
+  /**
+   * refresh_token
+   */
+  revokeToken: async(token) => {
+    const tokenInstance = await deleteToken(token);
+    return tokenInstance.refreshToken === token.refreshToken;
+  },
 }

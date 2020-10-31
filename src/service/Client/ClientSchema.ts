@@ -15,6 +15,8 @@ export const ClientSchema = new Schema({
   grants: [String],
   accessTokenLifetime: Number,
   refreshTokenLifetime: Number,
+}, {
+  toObject: {virtuals: true},
 });
 
 export const ClientModel = mongoose.model('Client', ClientSchema);

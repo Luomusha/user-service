@@ -9,7 +9,8 @@ import router from './router';
 
 const ROOT = process.cwd();
 
-const staticRoot = path.resolve(ROOT, 'static')
+const staticRoot = path.join(ROOT, 'static')
+const uploadRoot = path.join(ROOT, 'upload')
 const app = new Koa();
 app.keys = [APP_KEY];
 app.proxy = true;
@@ -20,7 +21,7 @@ app.use(koaViews(path.resolve(staticRoot)))
 app.use(koaBody({
   multipart: true,
   formidable: {
-    uploadDir: path.join(staticRoot, "upload"),
+    uploadDir: uploadRoot,
     keepExtensions: true,
     maxFieldsSize:2 * 1024 * 1024,
   }

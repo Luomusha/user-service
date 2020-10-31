@@ -10,16 +10,6 @@ export const saveClient = async (client: Client): Promise<Client> => {
 
 export const getClientById = async (clientId: string): Promise<Client> => {
   const client = await ClientModel.findById(clientId)
+  console.log("debug:", client)
   return client.toObject()
 }
-
-// saveClient({
-//   id: 'aaaaaabbbbbb',
-//   redirectUris: ['http://www.baidu.com'],
-//   grants: ['authorization_code',
-//     'client_credentials',
-//     'refresh_token',
-//     'password'],
-//   accessTokenLifetime: 3600,
-//   refreshTokenLifetime: 7200,
-// })

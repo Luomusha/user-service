@@ -34,6 +34,7 @@ export const postSession = async (ctx: Context, next: Next) => {
     }
   });
   const token:Token = await response.json();
+  console.log(token);
   const session = await saveSession(username, token)
   const expire = await redis.expire(username, token.expires_in)
   ctx.cookies.set('session', session, {

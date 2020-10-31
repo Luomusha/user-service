@@ -6,7 +6,7 @@ export const authorize = async (ctx, next) => {
   const authenticateHandler = {
     handle: function (request, response) {
       console.log('authenticateHandler')
-      return '5a8ffa48775be8238c04478f'
+      return '5f85b6c2d43ec65337cac93a'
     }
   }
   const options = {
@@ -23,10 +23,17 @@ export const token = async (ctx, next) => {
   const oauthRequest = new Request(ctx.request);
   const oauthResponse = new Response(ctx.response);
 
-  const token = await oauth.token(oauthRequest, oauthResponse)
-  ctx.body = oauthResponse.body;
-  ctx.status = oauthResponse.status;
-  ctx.set(oauthResponse.headers);
+  try {
+
+    const token = await oauth.token(oauthRequest, oauthResponse)
+    ctx.body = oauthResponse.body;
+    ctx.status = oauthResponse.status;
+    ctx.set(oauthResponse.headers);
+  } catch (e) {
+    console.log(e)
+    ctx.body = {error: e.name, error_description: e.message};
+    ctx.status = e.code;
+  }
   await next();
 }
 
